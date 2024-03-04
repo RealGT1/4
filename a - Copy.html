@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page not found</title>
+    <style>
+        body {
+            background-color: #232a36;
+            color: rgb(166, 166, 166);
+        }
+    </style>
+</head>
+
+<body>
+    <ul style="list-style: none; margin-left: 50px;">
+        <a href="#div0" style="margin-right: 10px;">N</a>
+        <a href="#div1" style="margin-right: 10px;">1</a>
+        <a href="#div2" style="margin-right: 10px;">2</a>
+        <a href="#div3" style="margin-right: 10px;">3</a>
+        <a href="#div4" style="margin-right: 10px;">4</a>
+        <a href="#div5" style="margin-right: 10px;">5</a>
+        <a href="#div6">6</a>
+    </ul>
+
+    <div id="div0"
+        style="margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; text-align: center; color: white;">
+        <p style="font-size: 100px;"> ‎ </p>
+        <h1></h1>
+    </div>
+
+    <pre>
+    <div id="div1">
+
+        <div style="padding-bottom: 500px;">
+
+        </div>
+        <h2>1</h2>
+
+        using System;
+        using System.IO;
+        
+        namespace FileCopy
+        {
+            class FileCopy
+            {
+                static void Main()
+                {
+                    Console.Write("Enter the path of the source text file: ");
+                    string sourceFilePath = Console.ReadLine();
+                    
+                    Console.Write("Enter the path of the destination text file: ");
+                    string destinationFilePath = Console.ReadLine();
+                    
+                    try
+                    {
+                        string fileContents = File.ReadAllText(sourceFilePath);
+                        File.WriteAllText(destinationFilePath, fileContents);
+                        Console.WriteLine("File copy successful!");
+                    }
+                    catch (FileNotFoundException)
+                    {
+                        Console.WriteLine("Error: Source file not found.");
+                    }
+                    catch (UnauthorizedAccessException)
+                    {
+                        Console.WriteLine("Error: Access to the file is unauthorized.");
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.WriteLine($"Error: {ex.Message}");
+                    }
+                }
+            }
+        }
+        
+Enter the path of the source text file: C:\Users\SHREYAS P\Desktop\old.txt
+Enter the path of the destination text file: C:\Users\SHREYAS P\Desktop\new.txt
+File copy successful!
+    </div>
+</pre>
+    <pre>
+    <div id="div2">
+        <h2>2</h2>
+        using System;
+
+        namespace Stack
+        {
+            class Stack
+            {
+                private int maxSize;
+                private int top;
+                private int[] stackArray;
+        
+                public Stack(int size)
+                {
+                    maxSize = size;
+                    stackArray = new int[maxSize];
+                    top = -1;
+                }
+        
+                public int Top
+                {
+                    get { return top; }
+                }
+        
+                public void Push(int value)
+                {
+                    if (top < maxSize - 1)
+                    {
+                        stackArray[++top] = value;
+                        Console.WriteLine($"Pushed {value} to the stack.");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Stack overflow! Cannot push more elements.");
+                    }
+                }
+        
+                public int Pop()
+                {
+                    if (top >= 0)
+                    {
+                        int poppedValue = stackArray[top--];
+                        Console.WriteLine($"Popped {poppedValue} from the stack.");
+                        return poppedValue;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Stack underflow! Cannot pop from an empty stack.");
+                        return -1; 
+                    }
+                }
+        
+                public void DisplayStack()
+                {
+                    if (top == -1)
+                    {
+                        Console.WriteLine("Stack is empty.");
+                    }
+                    else
+                    {
+                        Console.Write("Stack elements: ");
+                        for (int i = 0; i <= top; i++)
+                        {
+                            Console.Write($"{stackArray[i]} ");
+                        }
+                        Console.WriteLine();
+                    }
+                }
+            }
+        
+            class Program
+            {
+                static void Main()
+                {
+                    Console.Write("Enter the size of the stack: ");
+                    int stackSize = Convert.ToInt32(Console.ReadLine());
+                    Stack myStack = new Stack(stackSize);
+        
+                    while (true)
+                    {
+                        Console.WriteLine("\nChoose operation:");
+                        Console.WriteLine("1. Push");
+                        Console.WriteLine("2. Pop");
+                        Console.WriteLine("3. Display Stack");
+                        Console.WriteLine("4. Exit");
+                        Console.Write("Enter your choice (1-4): ");
+                        int choice = Convert.ToInt32(Console.ReadLine());
+        
+                        switch (choice)
+                        {
+                            case 1:
+                                Console.Write("Enter the value to push: ");
+                                int valueToPush = Convert.ToInt32(Console.ReadLine());
+                                myStack.Push(valueToPush);
+                                break;
+                            case 2:
+                                int poppedValue = myStack.Pop();
+                                if (poppedValue != -1)
+                                {
+                                    Console.WriteLine($"Popped value: {poppedValue}");
+                                }
+                                break;
+                            case 3:
+                                myStack.DisplayStack();
+                                break;
+                            case 4:
+                                Console.WriteLine("Exiting the program.");
+                                Environment.Exit(0);
+                                break;
+                            default:
+                                Console.WriteLine("Invalid choice. Please enter a valid option.");
+                                break;
+                        }
+                    }
+                }
+            }
+        }
+    </div>
+</pre>
+
+    <pre>
+    <div id="div3">
+        <h2>3</h2>
+        using System;
+
+        namespace Complex
+        {
+            class Complex
+            {
+                private double real;
+                private double imaginary;
+        
+                public Complex(double real, double imaginary)
+                {
+                    this.real = real;
+                    this.imaginary = imaginary;
+                }
+        
+                public static Complex operator +(Complex c1, Complex c2)
+                {
+                    double realSum = c1.real + c2.real;
+                    double imaginarySum = c1.imaginary + c2.imaginary;
+                    return new Complex(realSum, imaginarySum);
+                }
+        
+                public void Display()
+                {
+                    Console.WriteLine($"Result: {real} + {imaginary}i");
+                }
+            }
+        
+            class Program
+            {
+                static void Main()
+                {
+                    Console.WriteLine("Enter the first complex number:");
+                    Console.Write("Real part: ");
+                    double real1 = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Imaginary part: ");
+                    double imaginary1 = Convert.ToDouble(Console.ReadLine());
+        
+                    Console.WriteLine("\nEnter the second complex number:");
+                    Console.Write("Real part: ");
+                    double real2 = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Imaginary part: ");
+                    double imaginary2 = Convert.ToDouble(Console.ReadLine());
+        
+                    Complex complex1 = new Complex(real1, imaginary1);
+                    Complex complex2 = new Complex(real2, imaginary2);
+        
+                    Complex result = complex1 + complex2;
+        
+                    Console.WriteLine("\nSum of the two complex numbers:");
+                    result.Display();
+                }
+            }
+        }
+        
+    </div>
+</pre>
+    <pre>
+    <div id="div4">
+        <h2>4</h2>
+        using System;
+
+        namespace Shape
+        {
+            class Shape
+            {
+                public virtual void Draw()
+                {
+                    Console.WriteLine("Drawing a generic shape.");
+                }
+        
+                public virtual void Erase()
+                {
+                    Console.WriteLine("Erasing the generic shape.");
+                }
+            }
+        
+            class Circle : Shape
+            {
+                public override void Draw()
+                {
+                    Console.WriteLine("Drawing a circle.");
+                }
+        
+                public override void Erase()
+                {
+                    Console.WriteLine("Erasing the circle.");
+                }
+            }
+        
+            class Triangle : Shape
+            {
+                public override void Draw()
+                {
+                    Console.WriteLine("Drawing a triangle.");
+                }
+        
+                public override void Erase()
+                {
+                    Console.WriteLine("Erasing the triangle.");
+                }
+            }
+        
+            class Square : Shape
+            {
+                public override void Draw()
+                {
+                    Console.WriteLine("Drawing a square.");
+                }
+        
+                public override void Erase()
+                {
+                    Console.WriteLine("Erasing the square.");
+                }
+            }
+        
+            class Program
+            {
+                static void Main()
+                {
+                    Shape genericShape = new Shape();
+                    Circle circle = new Circle();
+                    Triangle triangle = new Triangle();
+                    Square square = new Square();
+        
+                    Console.WriteLine("Demonstrating polymorphism:");
+                    Console.WriteLine("\nUsing the base class reference to call methods:");
+                    UseShape(genericShape);
+                    Console.WriteLine("\nUsing the derived class references to call methods:");
+                    UseShape(circle);
+                    UseShape(triangle);
+                    UseShape(square);
+                }
+        
+                static void UseShape(Shape shape)
+                {
+                    shape.Draw();
+                    shape.Erase();
+                    Console.WriteLine();
+                }
+            }
+        }
+        
+
+    </div>
+</pre>
+    <pre>
+    <div id="div5">
+        <h2>5</h2>
+        using System;
+
+        namespace Shape
+        {
+            abstract class Shape
+            {
+                public abstract double CalculateArea();
+                public abstract double CalculatePerimeter();
+            }
+        
+            class Circle : Shape
+            {
+                public double Radius { get; set; }
+        
+                public Circle(double radius)
+                {
+                    Radius = radius;
+                }
+        
+                public override double CalculateArea()
+                {
+                    return Math.PI * Math.Pow(Radius, 2);
+                }
+        
+                public override double CalculatePerimeter()
+                {
+                    return 2 * Math.PI * Radius;
+                }
+            }
+        
+            class Triangle : Shape
+            {
+                public double SideA { get; set; }
+                public double SideB { get; set; }
+                public double SideC { get; set; }
+        
+                public Triangle(double sideA, double sideB, double sideC)
+                {
+                    SideA = sideA;
+                    SideB = sideB;
+                    SideC = sideC;
+                }
+        
+                public override double CalculateArea()
+                {
+                    double s = (SideA + SideB + SideC) / 2;
+                    return Math.Sqrt(s * (s - SideA) * (s - SideB) * (s - SideC));
+                }
+        
+                public override double CalculatePerimeter()
+                {
+                    return SideA + SideB + SideC;
+                }
+            }
+        
+            class Program
+            {
+                static void Main()
+                {
+                    Console.Write("Enter the radius of the circle: ");
+                    double radius = Convert.ToDouble(Console.ReadLine());
+                    Circle circle = new Circle(radius);
+        
+                    Console.Write("\nEnter the length of side A of the triangle: ");
+                    double sideA = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter the length of side B of the triangle: ");
+                    double sideB = Convert.ToDouble(Console.ReadLine());
+                    Console.Write("Enter the length of side C of the triangle: ");
+                    double sideC = Convert.ToDouble(Console.ReadLine());
+                    Triangle triangle = new Triangle(sideA, sideB, sideC);
+        
+                    DisplayShapeInfo(circle);
+                    DisplayShapeInfo(triangle);
+                }
+        
+                static void DisplayShapeInfo(Shape shape)
+                {
+                    Console.WriteLine($"Shape Type: {shape.GetType().Name}");
+                    Console.WriteLine($"Area: {shape.CalculateArea():F2}");
+                    Console.WriteLine($"Perimeter: {shape.CalculatePerimeter():F2}\n");
+                }
+            }
+        }
+        
+    </div>
+</pre>
+    <pre>
+    <div id="div6">
+        <h2>6</h2>
+        using System;
+
+        interface Resizable
+        {
+            void ResizeWidth(int width);
+            void ResizeHeight(int height);
+        }
+        
+        class Rectangle : Resizable
+        {
+            public int Width { get; set; }
+            public int Height { get; set; }
+        
+            public Rectangle(int width, int height)
+            {
+                Width = width;
+                Height = height;
+            }
+        
+            public void ResizeWidth(int width)
+            {
+                Width = width;
+                Console.WriteLine($"Width resized to: {Width}");
+            }
+        
+            public void ResizeHeight(int height)
+            {
+                Height = height;
+                Console.WriteLine($"Height resized to: {Height}");
+            }
+        
+            public void DisplayInfo()
+            {
+                Console.WriteLine($"Rectangle: Width = {Width}, Height = {Height}");
+            }
+        }
+        
+        class Program
+        {
+            static void Main()
+            {
+                Console.Write("Enter initial width of the rectangle: ");
+                int initialWidth = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter initial height of the rectangle: ");
+                int initialHeight = Convert.ToInt32(Console.ReadLine());
+        
+                Rectangle rectangle = new Rectangle(initialWidth, initialHeight);
+        
+                Console.WriteLine("\nInitial Rectangle Information:");
+                rectangle.DisplayInfo();
+        
+                Console.Write("\nEnter new width for resizing: ");
+                int newWidth = Convert.ToInt32(Console.ReadLine());
+                rectangle.ResizeWidth(newWidth);
+        
+                Console.Write("Enter new height for resizing: ");
+                int newHeight = Convert.ToInt32(Console.ReadLine());
+                rectangle.ResizeHeight(newHeight);
+        
+                Console.WriteLine("\nUpdated Rectangle Information:");
+                rectangle.DisplayInfo();
+            }
+        }
+        
+    </div>
+    <p>---------------------------------------------------------------------------------</p>
+<pre>
+    <div>
+
+    </div>
+</pre>
+    </pre>
+</body>
+
+</html>
